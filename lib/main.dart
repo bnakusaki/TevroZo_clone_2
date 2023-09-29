@@ -41,13 +41,13 @@ class MyApp extends StatelessWidget {
           primary: const Color.fromARGB(255, 255, 255, 255), //Color.fromARGB(255, 43, 46, 63),
           onPrimary: const Color.fromARGB(0, 0, 0, 0),
           secondary: const Color.fromARGB(255, 43, 46, 63),
-          onSecondary: Colors.white,
-          error: Colors.pink,
-          onError: Colors.pink,
+          onSecondary: Colors.white, // ignore
+          error: Colors.pink, // ignore
+          onError: Colors.pink, // ignore
           background: Colors.pink.shade200, //Color.fromARGB(255, 226, 143, 157),
-          onBackground: Colors.pink,
+          onBackground: Colors.pink, // ignore
           surface: Colors.black26,
-          onSurface: Colors.pink,
+          onSurface: Colors.pink, // ignore
           scrim: Colors.black,
           tertiary: const Color.fromARGB(255, 198, 198, 198),
         ),
