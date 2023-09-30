@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           fillColor: Colors.white,
           filled: true,
         ),
-        scaffoldBackgroundColor: const Color.fromARGB(255, 247, 247, 247),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 245, 245, 245),
         colorScheme: ColorScheme(
           brightness: Brightness.light,
           primary: const Color.fromARGB(255, 255, 255, 255), //Color.fromARGB(255, 43, 46, 63),

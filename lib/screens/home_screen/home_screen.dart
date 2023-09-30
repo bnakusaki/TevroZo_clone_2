@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:tevrozo_project_2/glassmorph.dart';
 import 'package:tevrozo_project_2/screens/popular_recipies/popular_recipies.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -167,9 +168,8 @@ class HomeScreen extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Chip(
-                                        backgroundColor: const Color.fromARGB(70, 111, 75, 51),
-                                        label: Text(
+                                      Glassmorph(
+                                        child: Text(
                                           'Breakfast',
                                           style: GoogleFonts.poppins(
                                             color: Theme.of(context).colorScheme.primary,
@@ -225,13 +225,12 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Chip(
-                                    backgroundColor: const Color.fromARGB(125, 228, 228, 227),
-                                    label: Text(
+                                  Glassmorph(
+                                    child: Text(
                                       'Breakfast',
                                       style: GoogleFonts.poppins(
-                                        color: Theme.of(context).colorScheme.secondary,
-                                        fontSize: 12,
+                                        color: Theme.of(context).colorScheme.primary,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -299,8 +298,8 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {}),
             FloatingActionButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      CupertinoPageRoute(builder: (context) => const PopularRecipiesScreen()));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const PopularRecipiesScreen()));
                 },
                 child: const Icon(Icons.add)),
             IconButton(
@@ -319,7 +318,7 @@ class HomeScreen extends StatelessWidget {
 List<String> meals = [
   'All',
   'Breakfast',
-  'Launch',
+  'Lunch',
   'Dinner',
   'Sweetner',
 ];

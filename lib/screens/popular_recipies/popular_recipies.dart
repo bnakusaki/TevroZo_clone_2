@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:tevrozo_project_2/glassmorph.dart';
 import 'package:tevrozo_project_2/screens/home_screen/home_screen.dart';
 import 'package:tevrozo_project_2/screens/recipie_screen/recipie_screen.dart';
 
@@ -175,10 +176,8 @@ class PopularRecipiesScreen extends StatelessWidget {
                                                               CrossAxisAlignment.start,
                                                           mainAxisSize: MainAxisSize.min,
                                                           children: [
-                                                            Chip(
-                                                              backgroundColor: const Color.fromARGB(
-                                                                  255, 155, 156, 159),
-                                                              label: Text(
+                                                            Glassmorph(
+                                                              child: Text(
                                                                 'Breakfast',
                                                                 style: GoogleFonts.poppins(
                                                                   color: Theme.of(context)
