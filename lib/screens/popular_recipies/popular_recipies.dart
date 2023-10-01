@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconly/iconly.dart';
 import 'package:tevrozo_project_2/core/data/image_paths.dart';
 import 'package:tevrozo_project_2/core/data/meals.dart';
+import 'package:tevrozo_project_2/core/widgets/glassmorph.dart';
 import 'package:tevrozo_project_2/core/widgets/meal_list.dart';
 import 'package:tevrozo_project_2/core/widgets/search_field.dart';
-import 'package:tevrozo_project_2/glassmorph.dart';
 import 'package:tevrozo_project_2/screens/recipie_screen/recipie_screen.dart';
 
 class PopularRecipiesScreen extends StatelessWidget {
