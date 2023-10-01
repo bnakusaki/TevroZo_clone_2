@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconly/iconly.dart';
+import 'package:tevrozo_project_2/core/data/image_paths.dart';
+import 'package:tevrozo_project_2/core/widgets/meal_list.dart';
+import 'package:tevrozo_project_2/core/widgets/search_field.dart';
 import 'package:tevrozo_project_2/glassmorph.dart';
 import 'package:tevrozo_project_2/screens/popular_recipies/popular_recipies.dart';
 
@@ -10,320 +13,255 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+    const double horizontalPadding = 15;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                  text: 'Good Morning\n',
-                  style: GoogleFonts.poppins(
-                    color: Theme.of(context).colorScheme.surface,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  )),
-              TextSpan(
-                text: 'What would you like to\ncook for today?',
-                style: GoogleFonts.poppins(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 19,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
+      body: SafeArea(
+        child: ListView(children: [
+          const SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.only(bottom: 50.0, right: 10),
-            child: FloatingActionButton(
-              onPressed: () {},
-              elevation: 0,
-              child: const Text(
-                '🐱',
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-          ),
-        ],
-        toolbarHeight: 100,
-      ),
-      body: ListView(children: [
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  label: Row(
+            padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 13),
-                        child:
-                            Icon(IconlyLight.search, color: Theme.of(context).colorScheme.surface),
-                      ),
-                      Text(
-                        'Search any recipes...',
-                        style: GoogleFonts.poppins(
-                          color: Theme.of(context).colorScheme.surface,
-                          fontWeight: FontWeight.w600,
+                      TextSpan(
+                        text: l10n.greetings,
+                        style: TextStyle(
+                          color: color.surface,
                           fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      TextSpan(
+                        text: l10n.homeScreenTitleQuestion,
+                        style: TextStyle(
+                          color: color.secondary,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
+                FloatingActionButton(
+                  onPressed: () {},
+                  elevation: 0,
+                  child: const Text(
+                    '🐱',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 0, 20),
-              child: SizedBox(
-                height: 45,
-                child: ListView(
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(horizontalPadding, 20, horizontalPadding, 20),
+            child: SearchField(),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: horizontalPadding, bottom: 20.0),
+            child: MealList(highlight: 'All'),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: horizontalPadding),
+            child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                ),
+                clipBehavior: Clip.hardEdge,
+                height: 350,
+                child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    for (String meal in meals)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          clipBehavior: Clip.hardEdge,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              elevation: const MaterialStatePropertyAll(0),
-                              fixedSize: const MaterialStatePropertyAll(Size(95, 45)),
-                              backgroundColor: MaterialStatePropertyAll(
-                                meal == 'All'
-                                    ? Theme.of(context).colorScheme.secondary
-                                    : Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                            child: Text(
-                              meal,
-                              style: GoogleFonts.poppins(
-                                color: meal == 'All'
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).colorScheme.scrim,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(imagePaths[index]),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: SizedBox(
-                height: 350,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    for (int i = 0; i < 2; i++)
-                      SizedBox(
-                        width: 250,
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(imagePaths[i]),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: ClipRRect(
-                                    child: Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.black26,
-                                      ),
-                                      child: Center(
-                                        child: Icon(
-                                          IconlyLight.heart,
-                                          color: Theme.of(context).colorScheme.primary,
-                                          size: 25,
-                                        ),
-                                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: ClipRRect(
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: color.surface,
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      IconlyLight.heart,
+                                      color: color.primary,
+                                      size: 25,
                                     ),
                                   ),
                                 ),
-                                Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Glassmorph(
-                                        child: Text(
-                                          'Breakfast',
-                                          style: GoogleFonts.poppins(
-                                            color: Theme.of(context).colorScheme.primary,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Bread Toast Egg',
-                                        style: GoogleFonts.poppins(
-                                          color: Theme.of(context).colorScheme.primary,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        '4 Ingredients | 15 Min',
-                                        style: GoogleFonts.poppins(
-                                          color: Theme.of(context).colorScheme.primary,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: SizedBox(
-                height: 134,
-                child: ClipRRect(
-                  clipBehavior: Clip.hardEdge,
-                  borderRadius: BorderRadius.circular(30),
-                  child: Card(
-                    elevation: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Column(
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Glassmorph(
                                     child: Text(
-                                      'Breakfast',
-                                      style: GoogleFonts.poppins(
-                                        color: Theme.of(context).colorScheme.primary,
+                                      l10n.chipMealLable,
+                                      style: TextStyle(
+                                        color: color.primary,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
                                   Text(
-                                    'We have 12 Recipies\nrecommendation',
-                                    style: GoogleFonts.poppins(
-                                      color: Theme.of(context).colorScheme.scrim,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
+                                    l10n.breadToastEgg,
+                                    style: TextStyle(
+                                      color: color.primary,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                  )
+                                  ),
+                                  Text(
+                                    l10n.breadToastEggIngredients,
+                                    style: TextStyle(
+                                      color: color.primary,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ],
-                          ),
-                          ClipRRect(
-                            clipBehavior: Clip.hardEdge,
-                            borderRadius: BorderRadius.circular(20),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                  fixedSize: const MaterialStatePropertyAll(Size(100, 50)),
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Theme.of(context).colorScheme.secondary)),
-                              child: Text(
-                                'Explore',
-                                style: GoogleFonts.poppins(
-                                    color: Theme.of(context).colorScheme.primary),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, _) {
+                    return const SizedBox(width: 15.0);
+                  },
+                  itemCount: 2,
+                )),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(horizontalPadding, 20, horizontalPadding, 0),
+            child: SizedBox(
+              height: 120,
+              child: ClipRRect(
+                clipBehavior: Clip.hardEdge,
+                borderRadius: BorderRadius.circular(30),
+                child: Card(
+                  elevation: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Chip(
+                                  label: Text(
+                                    l10n.chipMealLable,
+                                    style: TextStyle(
+                                      color: color.scrim,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  l10n.recipeRecommendation,
+                                  style: TextStyle(
+                                    color: color.scrim,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        ClipRRect(
+                          clipBehavior: Clip.hardEdge,
+                          borderRadius: BorderRadius.circular(15),
+                          child: MaterialButton(
+                            height: 45,
+                            onPressed: () {},
+                            color: color.secondary,
+                            child: Text(
+                              l10n.explore,
+                              style: TextStyle(
+                                color: color.primary,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
               ),
-            )
-          ],
-        ),
-      ]),
+            ),
+          )
+        ]),
+      ),
       bottomNavigationBar: BottomAppBar(
         shadowColor: Colors.transparent,
         color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(icon: const Icon(IconlyBold.home), onPressed: () {}),
-                Text(
-                  '.',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 30,
-                    height: 0.1,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(icon: const Icon(IconlyBold.home), onPressed: () {}),
+                  Text(
+                    '.',
+                    style: TextStyle(
+                      color: color.secondary,
+                      fontSize: 30,
+                      height: 0.1,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            IconButton(
-                icon: Icon(CupertinoIcons.compass, color: Theme.of(context).colorScheme.tertiary),
-                onPressed: () {}),
-            FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const PopularRecipiesScreen()));
-                },
-                child: const Icon(Icons.add)),
-            IconButton(
-                icon: Icon(IconlyLight.bookmark, color: Theme.of(context).colorScheme.tertiary),
-                onPressed: () {}),
-            IconButton(
-                icon: Icon(IconlyLight.profile, color: Theme.of(context).colorScheme.tertiary),
-                onPressed: () {}),
-          ],
+                ],
+              ),
+              IconButton(
+                  icon: Icon(CupertinoIcons.compass, color: color.tertiary), onPressed: () {}),
+              FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const PopularRecipiesScreen()));
+                  },
+                  child: const Icon(Icons.add)),
+              IconButton(icon: Icon(IconlyLight.bookmark, color: color.tertiary), onPressed: () {}),
+              IconButton(icon: Icon(IconlyLight.profile, color: color.tertiary), onPressed: () {}),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-List<String> meals = [
-  'All',
-  'Breakfast',
-  'Lunch',
-  'Dinner',
-  'Sweetner',
-];
-
-List<String> imagePaths = [
-  'assets/images/bread_toast.jpeg',
-  'assets/images/toast_berries.jpeg',
-];

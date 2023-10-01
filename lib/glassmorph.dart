@@ -19,9 +19,9 @@ class Glassmorph extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Colors.white.withOpacity(0.23),
+                color: Colors.white.withOpacity(0.13),
               ),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,

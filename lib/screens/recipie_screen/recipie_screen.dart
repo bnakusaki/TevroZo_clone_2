@@ -1,215 +1,216 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iconly/iconly.dart';
+import 'package:tevrozo_project_2/core/widgets/ingredients.dart';
 
 class RecipieScreen extends StatelessWidget {
   const RecipieScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+    const double horizontalPadding = 15;
+
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: FloatingActionButton(
-            onPressed: () => Navigator.of(context).pop,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            elevation: 0,
-            child: Icon(
-              IconlyLight.arrow_left,
-              color: Theme.of(context).colorScheme.scrim,
-            ),
-          ),
-        ),
-        actions: [
-          FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            elevation: 0,
-            child: Icon(
-              IconlyLight.bookmark,
-              color: Theme.of(context).colorScheme.scrim,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 15, left: 10),
-            child: FloatingActionButton(
-              onPressed: () {},
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              elevation: 0,
-              child: Icon(
-                CupertinoIcons.share,
-                color: Theme.of(context).colorScheme.scrim,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: ListView(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: ClipRRect(
-                  clipBehavior: Clip.hardEdge,
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
-                    height: 300,
-                    width: MediaQuery.of(context).size.width - 30,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/toast_berries.jpeg'), fit: BoxFit.cover),
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipRRect(
-                    clipBehavior: Clip.hardEdge,
-                    borderRadius: BorderRadius.circular(20),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: const ButtonStyle(
-                          elevation: MaterialStatePropertyAll(0.2),
-                          fixedSize: MaterialStatePropertyAll(Size(170, 45))),
-                      child: Text(
-                        '#1 Easiest Breakfast',
-                        style: GoogleFonts.poppins(color: Theme.of(context).colorScheme.scrim),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        IconlyBold.star,
-                        color: Theme.of(context).colorScheme.background,
-                        size: 25,
-                      ),
-                      Text(
-                        ' 4.5',
-                        style: GoogleFonts.poppins(
-                          color: Theme.of(context).colorScheme.background,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Text(
-                'Bread Banana Toast Vegan',
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text:
-                          'Bread Banana Toast Vegan starts with slices of your favourite vegan bread. It could be whole ',
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 12),
-                    ),
-                    TextSpan(
-                      text: 'ReadMore...',
-                      style: GoogleFonts.poppins(
-                        color: Theme.of(context).colorScheme.background,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Badge(
-                        backgroundColor: Theme.of(context).colorScheme.background,
-                        label: Icon(
-                          CupertinoIcons.check_mark,
-                          size: 15,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        smallSize: 5,
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.bottomRight,
-                        child: const CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/female.jpg'),
-                          backgroundColor: Colors.transparent,
+                      FloatingActionButton(
+                        onPressed: () => Navigator.of(context).pop,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        elevation: 0,
+                        child: Icon(
+                          IconlyLight.arrow_left,
+                          color: Theme.of(context).colorScheme.scrim,
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Column(
+                      Row(
                         children: [
-                          Text(
-                            'Organized by',
-                            style:
-                                GoogleFonts.poppins(color: Theme.of(context).colorScheme.surface),
+                          FloatingActionButton(
+                            onPressed: () {},
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            elevation: 0,
+                            child: Icon(
+                              IconlyLight.bookmark,
+                              color: Theme.of(context).colorScheme.scrim,
+                            ),
                           ),
-                          Text(
-                            '@Simon Lee',
-                            style: GoogleFonts.poppins(),
-                          )
+                          const SizedBox(width: 10),
+                          FloatingActionButton(
+                            onPressed: () {},
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            elevation: 0,
+                            child: Icon(
+                              CupertinoIcons.share,
+                              color: Theme.of(context).colorScheme.scrim,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    clipBehavior: Clip.hardEdge,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          fixedSize: const MaterialStatePropertyAll(Size(130, 30)),
-                          elevation: const MaterialStatePropertyAll(0.2),
-                          backgroundColor:
-                              MaterialStatePropertyAll(Theme.of(context).colorScheme.background)),
-                      onPressed: () {},
-                      child: Row(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Container(
+                      height: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        image: const DecorationImage(
+                            image: AssetImage('assets/images/toast_berries.jpeg'),
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: 150,
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: color.primary,
+                          child: Center(
+                            child: Text(
+                              l10n.hype,
+                              style: TextStyle(color: Theme.of(context).colorScheme.scrim),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
                         children: [
                           Icon(
-                            CupertinoIcons.check_mark,
-                            size: 15,
-                            color: Theme.of(context).colorScheme.primary,
+                            IconlyBold.star,
+                            color: Theme.of(context).colorScheme.background,
+                            size: 20,
                           ),
                           Text(
-                            '  Following',
-                            style:
-                                GoogleFonts.poppins(color: Theme.of(context).colorScheme.primary),
+                            ' 4.5',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.background,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    l10n.breadToastEgg,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: l10n.miniTutorial,
+                          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                        ),
+                        TextSpan(
+                          text: l10n.readMore,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.background,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Badge(
+                            backgroundColor: Theme.of(context).colorScheme.background,
+                            label: Icon(
+                              CupertinoIcons.check_mark,
+                              size: 15,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            smallSize: 5,
+                            padding: EdgeInsets.zero,
+                            alignment: Alignment.bottomRight,
+                            child: const CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/female.jpg'),
+                              backgroundColor: Colors.transparent,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.organizedBy,
+                                style: TextStyle(
+                                    color: Theme.of(context).colorScheme.surface, fontSize: 12),
+                              ),
+                              Text(
+                                l10n.organizer,
+                                style: const TextStyle(fontSize: 12),
+                              )
+                            ],
                           ),
                         ],
                       ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        clipBehavior: Clip.hardEdge,
+                        child: MaterialButton(
+                          color: Theme.of(context).colorScheme.background,
+                          onPressed: () {},
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.check_mark,
+                                size: 15,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              Text(
+                                l10n.fanStatus,
+                                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    l10n.ingredients,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
                     ),
-                  )
+                  ),
+                  for (int i = 0; i < 2; i++) const Ingredient(),
                 ],
               ),
-              const SizedBox(height: 20),
-              Text(
-                'Ingredients',
-                style: GoogleFonts.poppins(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Ingredient(),
-              const SizedBox(height: 15),
-              const Ingredient(),
-            ],
-          ),
-        ]),
+            )
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ClipRRect(
@@ -223,59 +224,13 @@ class RecipieScreen extends StatelessWidget {
             backgroundColor: MaterialStatePropertyAll(Theme.of(context).colorScheme.secondary),
           ),
           child: Text(
-            'Start Cooking',
-            style: GoogleFonts.poppins(
+            l10n.startCooking,
+            style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class Ingredient extends StatelessWidget {
-  const Ingredient({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.primary,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 80,
-              decoration: BoxDecoration(
-                image: const DecorationImage(image: AssetImage('assets/images/butter.jpeg')),
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.surface,
-              ),
-            ),
-            Text(
-              '40g butter, cut into peices',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                // color: Theme.of(context).colorScheme.surface,
-              ),
-            ),
-            Text(
-              '40g',
-              style: GoogleFonts.poppins(
-                color: Theme.of(context).colorScheme.surface,
-              ),
-            )
-          ],
         ),
       ),
     );

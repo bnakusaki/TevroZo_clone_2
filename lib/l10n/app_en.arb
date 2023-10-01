@@ -1,0 +1,23 @@
+{
+    "greetings": "Good Morning\n",
+    "homeScreenTitleQuestion": "What would you like to\ncook for today?",
+    "searchFieldHint": "Search any recipes...",
+    "chipMealLable": "Breakfast",
+    "breadToastEgg": "Bread Toast Egg",
+    "breadToastEggIngredients": "4 Ingredients | 15 Min",
+    "recipeRecommendation": "We have 12 Recipies\nrecommendation",
+    "explore": "Explore",
+    "popularRecipies": "Popular Recipies",
+    "seeAll": "See All",
+    "start": "Start",
+    "cookTime": "15 Min",
+    "hype": "#1 Easiest Breakfast",
+    "miniTutorial": "Bread Banana Toast Vegan starts with slices of your favourite vegan bread. It could be whole ",
+    "readMore": "ReadMore...",
+    "organizedBy": "Organized by",
+    "organizer": "@Simon Lee",
+    "fanStatus": " Following",
+    "ingredients": "Ingredients",
+    "startCooking": "Start Cooking",
+    "miniInstructions": "40g butter, cut into peices"
+}
